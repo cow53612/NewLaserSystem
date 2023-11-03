@@ -1,0 +1,17 @@
+* {
+    text-align: center;
+    background-color: antiquewhite;
+}
+
+#title {
+    font-size: 400%;
+}
+
+#line {
+    border-top: 1px solid #aaa;
+}
+
+#detail {
+    color: #999999;
+    font-size: 90%;
+}

@@ -1,5 +1,6 @@
 package io.github.cow53612.newlasersystem.scoremanager;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cow53612.newlasersystem.records.ResultData;
 
@@ -8,26 +9,35 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-public class DataManager {
+public class ResultManager {
 
     private static File file;
     private static ObjectMapper mapper;
-    private static HashMap<String, ResultData> data;
+    private static Map<Long, ResultData> data;
 
-    private DataManager() {}
+    private ResultManager() {}
 
-    public static void addScore(String name, ResultData result) {
+    public static void addScore(long hash, ResultData result) {
         try {
             FileWriter fileWriter;
-            if (!data.containsKey(name)) {
-                data.put(name, result);
-                fileWriter = new FileWriter(file);
-                fileWriter.write(mapper.writeValueAsString(data));
-                fileWriter.close();
 
-            } else if (data.get(name).score() < result.score()) {
-                data.put(name, result);
+            data.put(hash, result);
+            fileWriter = new FileWriter(file);
+            fileWriter.write(mapper.writeValueAsString(data));
+            fileWriter.close();
+        }catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteScore(long hash) {
+        try {
+            FileWriter fileWriter;
+            if (data.containsKey(hash)) {
+                data.remove(hash);
                 fileWriter = new FileWriter(file);
                 fileWriter.write(mapper.writeValueAsString(data));
                 fileWriter.close();
@@ -38,34 +48,19 @@ public class DataManager {
         }
     }
 
-    public static void deleteScore(String name) {
-        try {
-            FileWriter fileWriter;
-            if (data.containsKey(name)) {
-                data.remove(name);
-                fileWriter = new FileWriter(file);
-                fileWriter.write(mapper.writeValueAsString(data));
-                fileWriter.close();
-            }
-
-        }catch (Throwable e) {
-            e.printStackTrace();
-        }
+    public static boolean isExist(long hash) {
+        return data.containsKey(hash);
     }
 
-    public static boolean isExist(String name) {
-        return data.containsKey(name);
-    }
-
-    public static int getSize() {
-        return data.size();
+    public static Map<Long, ResultData> getMap() {
+        return data;
     }
 
     static {
         try {
             file = new File("data.json");
             mapper = new ObjectMapper();
-            data = new HashMap<>();
+            data = new LinkedHashMap<>();
 
             if (!file.exists()) {
                 file.createNewFile();
@@ -73,7 +68,12 @@ public class DataManager {
 
             FileReader fileReader = new FileReader(file);
             if (file.length() != 0) {
-                data = mapper.readValue(fileReader, data.getClass());
+                Map<Long, Map<String, Object>> preData = mapper.readValue(fileReader, new TypeReference<>(){});
+
+                for (Map.Entry<Long, Map<String, Object>> entry : preData.entrySet()) {
+                    data.put(entry.getKey(), new ResultData(entry.getValue().get("name").toString(), (int) entry.getValue().get("score")));
+                }
+
             }
         }catch (IOException e) {
             e.printStackTrace();

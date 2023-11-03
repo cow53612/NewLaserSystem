@@ -1,0 +1,32 @@
+* {
+    text-align: center;
+    margin: auto;
+    background-color: antiquewhite;
+}
+
+#title {
+    font-size: 500%;
+    font-family: HGP教科書体;
+}
+
+#line {
+    border-top: 1px solid #aaa;
+}
+
+.c-matrix  {
+    border-collapse:  collapse;
+    border:  solid  3px  #1b7c26;
+    width: 50%;
+    font-size: 200%;
+}
+.c-matrix  th,
+.c-matrix  td  {
+    padding:  8px  10px;
+}
+.c-matrix  th  {
+    border:  solid  1px  #1b7c26;
+    background-color:  #90e099;
+}
+.c-matrix  td  {
+    border:  dashed  1px  #1b7c26;
+}

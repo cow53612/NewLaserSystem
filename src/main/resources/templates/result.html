@@ -1,12 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Name Registering</title>
+    <title>登録完了</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/result.css}" rel="stylesheet">
 </head>
+
 <body>
-<h1>Registered Name</h1>
-<p th:text="'Hash:' + ${hash}" />
-<p th:text="'Name: ' + ${registername.name}" />
+<h1 id="title">登録完了</h1>
+<div id="line"></div>
+<div id="resulttext">
+    <p>登録が完了しました。</p><br>
+    <div id="detail">
+        <p>[詳細情報]</p>
+        <p th:text="'Hash:' + ${hash}" />
+        <p th:text="'Name: ' + ${name.name}" />
+    </div>
+</div>
 </body>
 </html>

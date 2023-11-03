@@ -13,12 +13,18 @@ public class PreResultManager {
         preData.put(hash, score);
     }
 
-    public static ResultData getPreData(long hash) {
-        return new ResultData(hash, preData.get(hash));
+    public static int getScore(long hash) {
+        return preData.get(hash);
     }
 
     public static boolean exists(long hash) {
         return preData.containsKey(hash);
+    }
+
+    static {
+        preData.put(114514L, 810);
+        preData.put(114515L, 114514191);
+        preData.put(114516L, 5);
     }
 
 }

@@ -1,14 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Name Registering</title>
+    <title>名前登録</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/registername.css}" rel="stylesheet">
 </head>
+
 <body>
-<h1>Form</h1>
-<form action="#" th:action="@{/registername(hash=${hash})}" th:object="${registername}" method="post">
-    <p>Name: <input type="text" th:field="*{name}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
+<h1 id="title">名前登録</h1>
+<div id="line"></div>
+<div id="form">
+    <p>スコアと名前を紐づけるために、名前の入力をお願いします（ニックネームでも可）</p>
+    <form action="#" th:action="@{/registername(hash=${hash})}" th:object="${name}" method="post">
+        <p>名前を入力してください: <input th:field="${name.name}" type="text" class="namebox" placeholder="おなまえ"/></p>
+
+        <p><input class="submit-button" type="submit" value="送信" /></p>
+    </form>
+    <p id="notice">※不具合が発生した場合はお知らせください<br>
+    QRコード以外からアクセスするとエラー画面が表示される場合があります</p>
+</div>
 </body>
 </html>

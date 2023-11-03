@@ -1,4 +1,4 @@
-package io.github.cow53612.newlasersystem;
+package io.github.cow53612.newlasersystem.controller;
 
 import io.github.cow53612.newlasersystem.records.ActionStatus;
 import io.github.cow53612.newlasersystem.scoremanager.PreResultManager;

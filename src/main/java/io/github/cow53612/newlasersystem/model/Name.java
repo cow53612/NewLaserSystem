@@ -1,13 +1,13 @@
 package io.github.cow53612.newlasersystem.model;
 
-public class RegisterName {
-    private String name;
+public class Name {
+    private String text;
 
     public String getName() {
-        return name;
+        return text;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.text = name;
     }
 }
