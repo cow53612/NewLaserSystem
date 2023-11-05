@@ -3,6 +3,12 @@
     background-color: antiquewhite;
 }
 
+select {
+    width: 200px;
+    height: 40px;
+    background: white;
+}
+
 #title {
     font-size: 400%;
 }

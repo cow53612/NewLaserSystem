@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ランキング (普通)</title>
+    <link th:href="@{css/ranking.css}" rel="stylesheet">
+</head>
+
+<body>
+<h1 id="title">ランキング (普通)</h1>
+<div id="line"></div>
+<br>
+<table  class="c-matrix">
+    <tr>
+        <th>順位</th>
+        <th>おなまえ</th>
+        <th>スコア</th>
+    </tr>
+    <tr th:each="result, stats : ${ranking}">
+        <td th:text="${stats.index + 1}"></td>
+        <td th:text="${result.name}"></td>
+        <td th:text="${result.score}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -7,4 +7,7 @@ public class Name {
         return text;
     }
 
+    public void setName(String name) {
+        this.text = name;
+    }
 }

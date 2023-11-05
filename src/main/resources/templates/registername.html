@@ -13,7 +13,14 @@
     <p>スコアと名前を紐づけるために、名前の入力をお願いします（ニックネームでも可）</p>
     <form action="#" th:action="@{/registername(hash=${hash})}" th:object="${name}" method="post">
         <p>名前を入力してください: <input th:field="${name.name}" type="text" class="namebox" placeholder="おなまえ"/></p>
+        <p>難易度を選択してください: (1レーン目の軽い銃は簡単、重い銃は普通、2レーン目は難しい) <br>
+            <select name="type", id="dropdown"><option
+                    th:each="element : ${type}"
+                    th:value="${element.key}"
+                    th:text="${element.value}"
+                    th:selected="${element == typeCd}"></option></select></p>
 
+        <br><br>
         <p><input class="submit-button" type="submit" value="送信" /></p>
     </form>
     <p id="notice">※不具合が発生した場合はお知らせください<br>

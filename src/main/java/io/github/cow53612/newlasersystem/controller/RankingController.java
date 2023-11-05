@@ -24,5 +24,52 @@ public class RankingController {
         model.addAttribute("ranking", ranking);
         return "ranking";
     }
+    @GetMapping(value="/ranking-easy")
+    public String rankingEasy(Model model) {
+        List<ResultData> ranking = new LinkedList<>();
+
+        for (Map.Entry<Long, ResultData> entry : ResultManager.getMap().entrySet()) {
+            if (entry.getValue().type().equals("1")) {
+                ranking.add(entry.getValue());
+            }
+        }
+
+        ranking.sort((result1, result2) -> result2.score() - result1.score());
+
+        model.addAttribute("ranking", ranking);
+        return "ranking-easy";
+    }
+
+    @GetMapping(value="/ranking-normal")
+    public String rankingNormal(Model model) {
+        List<ResultData> ranking = new LinkedList<>();
+
+        for (Map.Entry<Long, ResultData> entry : ResultManager.getMap().entrySet()) {
+            if (entry.getValue().type().equals("2")) {
+                ranking.add(entry.getValue());
+            }
+        }
+
+        ranking.sort((result1, result2) -> result2.score() - result1.score());
+
+        model.addAttribute("ranking", ranking);
+        return "ranking-normal";
+    }
+
+    @GetMapping(value="/ranking-hard")
+    public String rankingHard(Model model) {
+        List<ResultData> ranking = new LinkedList<>();
+
+        for (Map.Entry<Long, ResultData> entry : ResultManager.getMap().entrySet()) {
+            if (entry.getValue().type().equals("3")) {
+                ranking.add(entry.getValue());
+            }
+        }
+
+        ranking.sort((result1, result2) -> result2.score() - result1.score());
+
+        model.addAttribute("ranking", ranking);
+        return "ranking-hard";
+    }
 
 }

@@ -70,7 +70,7 @@ public class ResultManager {
                 Map<Long, Map<String, Object>> preData = mapper.readValue(fileReader, new TypeReference<>(){});
 
                 for (Map.Entry<Long, Map<String, Object>> entry : preData.entrySet()) {
-                    data.put(entry.getKey(), new ResultData(entry.getValue().get("name").toString(), (int) entry.getValue().get("score")));
+                    data.put(entry.getKey(), new ResultData(entry.getValue().get("name").toString(), (int) entry.getValue().get("score"), entry.getValue().get("type").toString()));
                 }
 
             }
